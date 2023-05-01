@@ -35,6 +35,7 @@ openssl rand -hex 32
 - Please go to https://cloud.mongodb.com/ and register account
 - Then, create Database with name `BlogStandard`
 - Create 2 collections: `posts` and `users`. You can check below ![screenshot](public/img/mongodb-database.png)
+- When you click Connect, you can get MONGODB_URI then fill up the password in env file. You can check ![screenshot](public/img/mongodb-uri.png)
 ### Fill up keys
 Please create a file `.env.local` in root directory and fill up these values:
 
@@ -44,7 +45,7 @@ AUTH0_BASE_URL=<Your app Domain>
 AUTH0_ISSUER_BASE_URL=<Auth0 Domain>
 AUTH0_CLIENT_ID=<Auth0 Client ID>
 AUTH0_CLIENT_SECRET=<Auth0 Client Secret>
-MONGODB_URI=
+MONGODB_URI=mongodb+srv://<your_user>:<your_password>@<database_name>.mongodb.net/?retryWrites=true&w=majority
 OPEN_API_KEY=
 ```
 
