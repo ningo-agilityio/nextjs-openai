@@ -1,0 +1,1 @@
+# Blog Post with Next.js and OpenAI
