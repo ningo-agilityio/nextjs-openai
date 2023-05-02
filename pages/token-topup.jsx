@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from 'react'
 import { withPageAuthRequired } from "@auth0/nextjs-auth0"
-import AppLayout from '@/layouts'
-import { getAppProps } from '@/utils/getAppProps'
+import Admin from "layouts/Admin.js";
+import { getAppProps } from "utils/getAppProps";
 
 export default function TokenTopup() {
   const [postContent, setPostContent] = useState("")
@@ -29,9 +29,7 @@ export default function TokenTopup() {
   )
 }
 
-TokenTopup.getLayout = function getLayout(page, pageProps) {
-  return <AppLayout {...pageProps}>{page}</AppLayout>
-}
+TokenTopup.layout = Admin;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {

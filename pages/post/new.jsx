@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from 'react'
 import { withPageAuthRequired } from "@auth0/nextjs-auth0"
-import AppLayout from '@/layouts'
+import Admin from "layouts/Admin.js";
 import { useRouter } from 'next/router'
-import { getAppProps } from '@/utils/getAppProps'
+import { getAppProps } from 'utils/getAppProps'
 
 export default function NewPost() {
   const router = useRouter()
@@ -45,9 +45,7 @@ export default function NewPost() {
   )
 }
 
-NewPost.getLayout = function getLayout(page, pageProps) {
-  return <AppLayout {...pageProps}>{page}</AppLayout>
-}
+NewPost.layout = Admin;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {

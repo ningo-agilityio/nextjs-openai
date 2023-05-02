@@ -76,40 +76,39 @@ export default function Sidebar({ posts = [], availableTokens = 0 }) {
             {/* Navigation */}
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
-                <Link href="/admin/dashboard" className={
+                <span className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
-                    }>
-                  <i
+                    }><i
                       className={
                         "fas fa-credit-card mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/dashboard") !== -1
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
-                    ></i>{" "}
-                    {availableTokens}
-                </Link>
+                    ></i>{" "}{availableTokens}</span>
               </li>
 
               <li className="items-center">
-                <Link href="/admin/settings" className={
-                      "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }>
-                  <i
-                      className={
-                        "fas fa-plus mr-2 text-sm " +
-                        (router.pathname.indexOf("/admin/settings") !== -1
-                          ? "opacity-75"
-                          : "text-blueGray-300")
-                      }
-                    ></i>{" "}
-                    Top up
+                <Link href="/token-topup">
+                    <a  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (router.pathname.indexOf("/token-topup") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }>
+                      <i
+                        className={
+                          "fas fa-plus mr-2 text-sm " +
+                          (router.pathname.indexOf("/token-topup") !== -1
+                            ? "opacity-75"
+                            : "text-blueGray-300")
+                        }
+                      ></i>{" "}
+                        Top up
+                    </a>
                 </Link>
               </li>
             </ul>
@@ -126,17 +125,19 @@ export default function Sidebar({ posts = [], availableTokens = 0 }) {
               {
                 posts.map((post, index) => {
                   return <li className="items-center" key={post._id}>
-                    <Link href={`/post/${post._id}`} className="text-blueGray-700 hover:text-blueGray-500 text-xs py-3 font-bold block">
-                      <i className="fas fa-book text-blueGray-400 mr-2 text-sm"></i>{" "}
-                      {post.title.replaceAll('"', '')}
+                    <Link href={`/post/${post._id}`} >
+                      <a href={`/post/${post._id}`} className="text-blueGray-700 hover:text-blueGray-500 text-xs py-3 font-bold block">
+                        <i className="fas fa-book text-blueGray-400 mr-2 text-sm"></i>{" "}
+                        {post.title.replaceAll('"', '')}
+                      </a>
                     </Link>
                   </li>
                 })
               }
               <li className="items-center">
-                <Link href="/new" className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-                <i className="fas fa-plus text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Create New Post
+                <Link href="/new">
+                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i className="fas fa-plus text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  Create New Post</a>
                 </Link>
               </li>
             </ul>
