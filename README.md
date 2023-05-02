@@ -2,7 +2,7 @@
 This is POC for course from Udemy: [link](https://www.udemy.com/course/next-js-ai/)
 
 ## Live demo
-...
+[https://nextjs-openai-brown.vercel.app/](https://nextjs-openai-brown.vercel.app/)
 ## Technical Stack
 - [Next.js](https://www.npmjs.com/package/next): v13.3.2
 - [React](https://www.npmjs.com/package/react): v18.2.0
