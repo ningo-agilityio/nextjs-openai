@@ -8,9 +8,11 @@ import { useRouter } from 'next/router'
 export default function TokenTopup() {
   const router = useRouter()
   const [token, setToken] = useState("")
+  const [processing, setProcessing] = useState(false)
 
   // This function handles the click event of the button on the page. It uses the topic and keywords state variables to send a request to the backend, which then generates a post based on the topic and keywords. The response from the backend is then used to set the postContent state variable, which is used to display the post on the page.
   const handleClick = async () => {
+    setProcessing(true)
     const response = await fetch("/api/addTokens", {
       method: "POST",
       headers: {
@@ -22,6 +24,7 @@ export default function TokenTopup() {
     const json = await response.json()
     if (json?.success) {
       // Refresh
+      setProcessing(false)
       router.replace(router.asPath);
     }
   }
@@ -38,7 +41,11 @@ export default function TokenTopup() {
           className="mt-2 bg-lightBlue-600 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
           type="button"
           onClick={handleClick}
+          disabled={processing}
         >
+          {
+            processing && <i className="fas fa-circle-notch animate-spin text-white mx-auto text-xl px-1"></i>
+          }
           Top up
         </button>
       </div>
