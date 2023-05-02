@@ -20,6 +20,10 @@ export default withApiAuthRequired(async function handler(req, res) {
   })
   const { topic, keywords } = req.body
   const openai = new OpenAIApi(config)
+
+  /**
+   * Option 1: Using createCompletion and davinci model
+   */
   // const response = await openai.createCompletion({
   //   model: "text-davinci-003",
   //   temperature: 0,
@@ -33,6 +37,10 @@ export default withApiAuthRequired(async function handler(req, res) {
   //     "metaDescription": meta description goes here
   //   }`
   // })
+
+  /**
+   * Option 2: Using createChatCompletion and gpt model
+   */
   const postContentResponse = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     temperature: 0,
@@ -83,6 +91,7 @@ export default withApiAuthRequired(async function handler(req, res) {
   const metaDescription = metaDescriptionResponse.data.choices[0]?.message?.content || ""
   // res.status(200).json({ post: response.data.choices[0]?.text?.split("\n").join("") })
   
+  // Minus token from user after creating one post
   await db.collection("users").updateOne({ 
     authOId: user.sub,
   }, {
@@ -91,6 +100,8 @@ export default withApiAuthRequired(async function handler(req, res) {
   }, {
     upsert: true
   });
+
+  // Insert one post
   const post = await db.collection("posts").insertOne({
     title,
     postContent,
@@ -100,10 +111,5 @@ export default withApiAuthRequired(async function handler(req, res) {
     userId: userProfile._id,
     createdAt: new Date()
   })
-  // res.status(200).json({ post: {
-  //   title,
-  //   postContent,
-  //   metaDescription
-  // }})
   res.status(200).json({ postId: post.insertedId })
 })
