@@ -31,10 +31,10 @@ export default function Navbar({ user }) {
                   ></Image>
                 </span>
               </div>
-              <Link href="/api/auth/logout" className="text-white text-sm font-semibold px-4">Logout</Link>
+              <Link href="/api/auth/logout"><a href="/api/auth/logout" className="text-white text-sm font-semibold px-4">Logout</a></Link>
             </ul>
           :
-            <Link href="/api/auth/login">Login</Link>
+            <Link href="/api/auth/login"><a href="/api/auth/login" className="text-white text-sm font-semibold px-4">Login</a></Link>
           }
         </div>
       </nav>
